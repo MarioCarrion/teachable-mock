@@ -1,8 +1,10 @@
 language: ruby
 rvm:
   - 2.3
+addons:
+  code_climate:
+    repo_token: 3c8605e638fea96641b940a99780ffe61c6c3e9307f49dfbf968eec8c2687737
 script:
-  - bundle install
-  - bundle exec rspec && bundle exec rubocop
+  - bundle install && bundle exec rspec && bundle exec rubocop
 after_success:
   - bundle exec codeclimate-test-reporter
