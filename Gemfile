@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'yajl-ruby', require: 'yajl'
+
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'

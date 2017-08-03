@@ -2,3 +2,35 @@ require: 'rubocop-rspec'
 
 AllCops:
     TargetRubyVersion: 2.3
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 125
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/ExampleLength:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/MultipleExpectations:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/NamedSubject:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'
+
+Style/BlockDelimiters:
+  Enabled: true
+  Exclude:
+    - 'spec/**/*'

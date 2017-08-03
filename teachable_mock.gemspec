@@ -22,6 +22,8 @@ Gem::Specification.new do |s|
   s.test_files   = `git ls-files -- {spec,test}`.split("\n")
   s.require_path = 'lib'
 
+  s.add_runtime_dependency 'yajl-ruby', '~> 1.3', '>= 1.3.0'
+
   s.add_development_dependency 'pry',               '~> 0.10', '>= 0.10.4'
   s.add_development_dependency 'pry-nav',           '~> 0.2',  '>= 0.2.4'
   s.add_development_dependency 'rspec',             '~> 3.6',  '>= 3.6.0'

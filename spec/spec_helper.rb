@@ -2,10 +2,17 @@
 
 require_relative 'setup/simplecov'
 
-require 'teachable_mock'
+require 'bundler'
+
+Bundler.require(:default, :test)
+
+require_relative 'setup/teachable_mock'
+require_relative 'setup/vcr'
 
 RSpec.configure do |config|
   Kernel.srand config.seed
+
+  config.include WebMock::API
 
   config.order = :random
   config.shared_context_metadata_behavior = :apply_to_host_groups
