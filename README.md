@@ -1,6 +1,6 @@
 # Teachable Mock API Wrapper
 
-[![Build Status](https://travis-ci.org/MarioCarrion/teachable-mock.svg?branch=master)](https://travis-ci.org/MarioCarrion/json-array-fields-for)
+[![Build Status](https://travis-ci.org/MarioCarrion/teachable-mock.svg?branch=master)](https://travis-ci.org/MarioCarrion/teachable-mock)
 [![Test Coverage](https://codeclimate.com/github/MarioCarrion/teachable-mock/badges/coverage.svg)](https://codeclimate.com/github/MarioCarrion/teachable-mock/coverage)
 
 Ruby gem that wraps the [Teachable Mock API](https://fast-bayou-75985.herokuapp.com/)

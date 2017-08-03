@@ -4,7 +4,10 @@ rvm:
 addons:
   code_climate:
     repo_token: 3c8605e638fea96641b940a99780ffe61c6c3e9307f49dfbf968eec8c2687737
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 script:
-  - bundle install && bundle exec rspec && bundle exec rubocop
-after_success:
-  - bundle exec codeclimate-test-reporter
+  - gem install bundler && bundle install
+  - bundle exec rubocop && bundle exec rspec
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
