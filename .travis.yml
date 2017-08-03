@@ -1,9 +1,9 @@
 language: ruby
 rvm:
   - 2.3
-addons:
-  code_climate:
-    repo_token: 3c8605e638fea96641b940a99780ffe61c6c3e9307f49dfbf968eec8c2687737
+env:
+  global:
+    - CC_TEST_REPORTER_ID=3c8605e638fea96641b940a99780ffe61c6c3e9307f49dfbf968eec8c2687737
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
