@@ -20,9 +20,7 @@ module Teachable
         response = make_request(type: type, http: http, uri: uri, payload: payload)
         return [process_errors(response.body), nil] if response.code == CODE_422 ||
                                                        response.code == CODE_401
-        return [nil, nil] if type == :delete
-
-        [nil, Yajl::Parser.parse(response.body)]
+        [nil, parse_body(response.body)]
       end
 
       private
@@ -84,9 +82,14 @@ module Teachable
         response
       end
 
-      def process_errors(body)
-        body = Yajl::Parser.parse(body)
+      def parse_body(body)
+        Yajl::Parser.parse(body)
+      rescue Yajl::ParseError
+        {}
+      end
 
+      def process_errors(body)
+        body = parse_body(body)
         body.dig('errors') || body.dig('error')
       end
     end # class

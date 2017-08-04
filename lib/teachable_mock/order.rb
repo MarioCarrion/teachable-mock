@@ -13,6 +13,14 @@ module Teachable
                   :user
 
       class << self
+        def all(user)
+          c = Client.new(Mock.configuration.hostname)
+          query = "user_email=#{user.email}&user_token=#{user.token}"
+          errors, json = c.request(type: :get, path: '/api/orders.json', query: query)
+          return [errors, []] unless errors.nil?
+          [nil, json.map { |attrs| Order.new(user: user, attrs: attrs) }]
+        end
+
         def create(user:, attrs:)
           client  = Client.new(Mock.configuration.hostname)
           payload = Yajl::Encoder.encode(order: attrs)
@@ -39,14 +47,12 @@ module Teachable
       end
 
       def delete
-        raise ArgumentError, 'Record must be persisted first' if id.nil?
-
         client = Client.new(Mock.configuration.hostname)
         query = "user_email=#{user.email}&user_token=#{user.token}"
-        @errors, = client.request(type:  :delete,
-                                  path:  "/api/orders/#{id}.json",
-                                  query: query)
-        return false unless errors.nil?
+        @errors, json = client.request(type:  :delete,
+                                       path:  "/api/orders/#{id}.json",
+                                       query: query)
+        return false if !errors.nil? || json&.dig('status') == '404'
         true
       end
     end # class

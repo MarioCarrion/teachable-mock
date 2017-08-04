@@ -35,7 +35,7 @@ module Teachable
         end
       end # << self
 
-      attr_reader :id, :email, :token
+      attr_reader :id, :email, :errors, :token
 
       def initialize(id:, email:, token:)
         @id    = id
@@ -43,7 +43,17 @@ module Teachable
         @token = token
       end
 
-      # TODO: build_order, orders
+      def create_order(attrs)
+        @errors, result = Order.create(user: self, attrs: attrs)
+        return nil if errors
+        result
+      end
+
+      def orders
+        @errors, result = Order.all(self)
+        return nil if errors
+        result
+      end
     end # class
   end
 end

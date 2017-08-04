@@ -12,3 +12,18 @@ This assumes you're using [`rvm`](https://rvm.io/)
 1. `gem install bundler && bundle install`
 2. `bundle exec rspec`
 3. Profit
+
+## Examples
+
+```ruby
+require 'teachable_mock'
+
+user = Teachable::Mock::User.register(email: 'fancy@email.com',
+                                      password: 'abcdef12345',
+                                      password_confirmation: 'abcdef12345')
+
+order = user.create_order('number'         => 3,
+                          'total'          => 10,
+                          'total_quantity' => 99)
+order.delete
+```
